@@ -1,7 +1,7 @@
 # compiled obj files
-.o
-.obj
+*.o
+*.obj
 
 # compiled bin files
-.exe
-.dll
+*.exe
+*.dll
