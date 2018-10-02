@@ -1,5 +1,5 @@
 # declaring paths for source files
-OUT = bin/<outputname>
+OUT = bin/out
 SRC = $(wildcard src/*.cpp)
 DEP = $(wildcard src/*.h)
 OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
@@ -10,8 +10,8 @@ OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
 ifeq ($(OS), Windows_NT)
 	DETECTED_OS = $(OS)
 	CC = g++
-	CFLAGS = -c -IC:/mingwdev/include/SDL2
-	INCLUDE = -IC:/mingwdev/include/SDL2
+	CFLAGS = -c -IC:/mingwdev/include
+	INCLUDE = -IC:/mingwdev/include
 	LFLAGS = -LC:/mingwdev/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -o $(OUT)
 # mac
 else ifeq ($(shell uname -s), Darwin)
@@ -36,17 +36,17 @@ $(OUT): $(OBJ)
 	$(CC) $^ $(LFLAGS)
 
 obj/%.o: src/%.cpp
-	$(CC) $< $(INCLUDE) -o $@
+	$(CC) $< $(CFLAGS) -o $@
 
 
 # extra rules, features, etc.
 .PHONY: clean
 clean:
-	rm -f $(OBJ) $(OUT)
+	rm -f $(OBJ) $(OUT) $(OUT).exe
 
 .PHONY: mrclean
 mrclean: 
-	rm -f *.o *.exe
+	rm -f *.o *.exe $(OUT)
 
 .PHONY: rebuild
 rebuild: clean all
