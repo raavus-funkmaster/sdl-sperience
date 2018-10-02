@@ -42,11 +42,11 @@ obj/%.o: src/%.cpp
 # extra rules, features, etc.
 .PHONY: clean
 clean:
-	rm -f $(OBJ) $(OUT)
+	rm -f $(OBJ) $(OUT) $(OUT).exe
 
 .PHONY: mrclean
 mrclean: 
-	rm -f *.o *.exe
+	rm -f *.o *.exe $(OUT)
 
 .PHONY: rebuild
 rebuild: clean all
