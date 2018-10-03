@@ -1,3 +1,4 @@
+# I use CC because CXX is hideous
 # declaring paths for source files
 OUT = bin/out
 SRC = $(wildcard src/*.cpp)
